@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>List of Product</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link th:href="@{/styles/cssandjs/indexcss.css}" rel="stylesheet" />
+</head>
+
+   
+<body>
+    <h1>List of Product</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product, iterStat : ${productlist}">
+                <td th:text="${iterStat.index+1}"></td>
+                <td th:text="${product.nameProduct}"></td>
+                <td th:text="${'$' + product.priceProduct}"></td>
+                <td th:text="${product.TypeProduct.getNameTypeProduct()}"></td>
+                <td><button><a th:href="@{/view/__${product.idProduct}__}">view</a></button></td>
+                <td><button><a th:href="@{/delete/__${product.idProduct}__}">delete</a></button></td>
+            
+            </tr>
+        </tbody>
+    </table>
+    <div class="create-button">
+        <button>
+            <a th:href="@{/add}">create</a>
+        </button>
+    </div>
+</body>
+</html>
